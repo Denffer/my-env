@@ -72,10 +72,15 @@ export LC_CTYPE=en_US.UTF-8
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
+export PS1="\`if [ \$? = 0 ];
+			then echo 🙂  $' %{$fg_bold[green]%}%n%{$reset_color%}@%{$fg_bold[green]%}MacBook-Pro %{$fg_bold[blue]%}%D{[%H:%M:%S]} %{$reset_color%}%{$fg[white]%}[%~]%{$reset_color%} $(git_prompt_info)\%{$fg[blue]%}->%{$fg_bold[blue]%} %#%{$reset_color%} ';
+			else echo ☹️  $' %{$fg_bold[green]%}%n%{$reset_color%}@%{$fg_bold[green]%}MacBook-Pro %{$fg_bold[blue]%}%D{[%H:%M:%S]} %{$reset_color%}%{$fg[white]%}[%~]%{$reset_color%} $(git_prompt_info)\%{$fg[blue]%}->%{$fg_bold[blue]%} %#%{$reset_color%} ';
+			fi\`"
 
-
-# This line is for auto-suggestion
+#This line is for auto-suggestion
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+unsetopt correct_all
 
 # aliases
   alias ls='ls -GF' 
