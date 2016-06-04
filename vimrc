@@ -1,3 +1,6 @@
+" Version 1.0
+" Author : Denffer
+"
 " Sections
 " 1. General :16
 " 2. VIM environment  :56
@@ -9,8 +12,18 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General  " all the plugin should put here
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"autocmd WinEnter,FileType * colorscheme lucius
+"autocmd WinEnter,FileType php colorscheme solarmized
+"let g:solarized_termcolors=256
+set t_Co=256
+try
+    colorscheme lucius 
+catch
+endtry
+
 " Set curserline
 set cursorline
+hi CursorLineNr cterm=bold ctermfg=46
 
 "Set background
 set background=dark
@@ -34,7 +47,7 @@ let mapleader = ","
 let g:mapleader = ","
 
 "match tmux
-set term=screen-256color
+"set term=screen-256color
 
 " automatically reload vimrc when it's saved
 autocmd BufWritePost .vimrc source ~/.vimrc
@@ -51,10 +64,14 @@ map <C-n> :NERDTreeToggle<CR>
 " Enable syntax highlighting
 syntax enable 
 set nu
-try
-    colorscheme lucius 
-catch
-endtry
+
+" Remove the annoying red indent
+highlight ExtraWhitespace ctermbg=black guibg=black
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
 
 " Set 8 lines to the cursor - when moving up and down
 set so=8
@@ -101,6 +118,9 @@ set magic
 
 " Always show the status line
 set laststatus=2
+
+" enable mouse scroll
+set mouse=a
 
 " Show matching brackets when text indicator is over them set showmatch 
 " How many tenths of a second to blink when matching brackets
@@ -157,7 +177,7 @@ func! DeleteTrailingWS()
   exe "normal `z"
 endfunc
 autocmd BufWrite *.py :call DeleteTrailingWS()
-autocmd BufWrite *.coffee :call DeleteTrailingWS()
+autocmd BufWrite *.c :call DeleteTrailingWS()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Tab and Indent
@@ -168,10 +188,11 @@ set smarttab
 " Use spaces instead of tabs
 set expandtab
 
-" 1 tab == 4 spaces
-"set shiftwidth=4
-"set tabstop=4
+" Set textwidth
+set textwidth=80
 
+" 1 tab == 4 spaces
+set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 
@@ -186,6 +207,7 @@ set si
 " Wrap lines
 set wrap
 
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Shortcut & Mapping
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -195,7 +217,7 @@ map good :wq<CR>
 map fuck :q!<CR> 
 
 " Un highlight
-map <C-q> :noh<CR>
+map <leader>h :noh<cr>
 
 " Undo, Redo (broken)
 nnoremap <C-z>  :undo<CR>
@@ -298,3 +320,4 @@ set nobackup
 set nowb
 set noswapfile
 
+hi CursorLineNr cterm=bold ctermfg=46

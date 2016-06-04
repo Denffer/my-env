@@ -67,6 +67,7 @@ export LC_CTYPE=en_US.UTF-8
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
+#export TERM=xterm-256color
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -79,6 +80,8 @@ export PS1="\`if [ \$? = 0 ];
 
 #This line is for auto-suggestion
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+# This is for color syntax highlight
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 unsetopt correct_all
 
