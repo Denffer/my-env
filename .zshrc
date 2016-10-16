@@ -24,7 +24,7 @@ plugins=(jump)
 #This line is for auto-suggestion
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 # This is for color syntax highlight
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ${(q-)PWD}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # User configuration
 export PATH=/usr/local/bin:$PATH
